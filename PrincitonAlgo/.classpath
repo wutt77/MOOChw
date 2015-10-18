@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="hw1Perlocation/percolation"/>
+	<classpathentry kind="src" path="hw1Perlocation/src"/>
+	<classpathentry kind="lib" path="hw1Perlocation/lib/algs4.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="hw1Perlocation/bin"/>
+</classpath>
