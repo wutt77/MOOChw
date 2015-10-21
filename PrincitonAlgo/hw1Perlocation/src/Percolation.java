@@ -31,10 +31,10 @@ public class Percolation {
     	
     	if(!isOpen(i, j)) {
 	    	mGridStatus[indexMapping(i, j)] = true;
-	    	if(j-1 > 0) mMatrix.union(indexMapping(i, j), indexMapping(i, j-1));
-	    	if(j+1 <= mGridN) mMatrix.union(indexMapping(i, j), indexMapping(i, j+1));
-	    	if(i-1 > 0) mMatrix.union(indexMapping(i, j), indexMapping(i-1, j));
-	    	if(i+1 <= mGridN) mMatrix.union(indexMapping(i, j), indexMapping(i+1, j));
+	    	if(j-1 > 0 && mGridStatus[indexMapping(i, j-1)]) mMatrix.union(indexMapping(i, j), indexMapping(i, j-1));
+	    	if(j+1 <= mGridN && mGridStatus[indexMapping(i, j+1)]) mMatrix.union(indexMapping(i, j), indexMapping(i, j+1));
+	    	if(i-1 > 0 && mGridStatus[indexMapping(i-1, j)]) mMatrix.union(indexMapping(i, j), indexMapping(i-1, j));
+	    	if(i+1 <= mGridN && mGridStatus[indexMapping(i+1, j)]) mMatrix.union(indexMapping(i, j), indexMapping(i+1, j));
     	}
        
     }
@@ -49,7 +49,8 @@ public class Percolation {
 	   // is site (row i, column j) full?, connect to top of row?
     	if(i < 1 || i > mGridN || j < 1 || j > mGridN)
     		throw new IndexOutOfBoundsException();
-    	for(int col = 1; col < mGridN; col++) {
+    	if(!isOpen(i, j)) return false;
+    	for(int col = 1; col <= mGridN; col++) {
     		if(mMatrix.connected(indexMapping(i, j), indexMapping(1, col))) {
     			return true;
     		}
